@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" ng-app="freshApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Crazy T-shirts</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,100,700,900' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel='shortcut icon' type='image/x-icon' href='images/favicon.png' />
+<!--CSS Dependencies-->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<!--Javascript Dependencies    -->
+    <script src="js/lib/fabric/fabric.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/lib/angular/angular.min.js"></script>
+    <script src="js/lib/angular/angular-route.min.js"></script>
+    <script src="js/lib/bootstrap.js"></script>
+
+<!--Controllers-->
+    <script src="js/freshApp.js"></script>
+    <script src="js/controllers/design.js"></script>
+    <script src="js/controllers/home.js"></script>
+</head>
+
+<body>
+    <div class="backDrop">
+        <div class="container">
+            <div class="header-container header">
+                <a class="navbar-brand logo" href="#home"> <img class="logo" src="images/logo.png" /> </a>
+
+            </div>
+            <div ng-view></div>
+
+        </div>
+        <!--hero-container-->
+        <footer>Designed by Harsh Jain</footer>
+    </div>
+    <!--hero-background-->
+</body>
+
+</html>

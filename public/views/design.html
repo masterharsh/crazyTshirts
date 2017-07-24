@@ -1,0 +1,67 @@
+<div class="row canvasContainer" ng-init="fetchData()">
+    <div class="col-md-12 col-sm-12">
+        <h2 class="text-center design-headline bold"> Explode your Creativity</h2>
+<!--T-shirt Canvas-->
+        <div id="design" class="col-sm-5 col-md-5">
+            <div class="canvas-container">
+                <canvas id="freshCanvas" width="230" height="300"></canvas>
+            </div>
+        </div>
+<!--Designing Controls-->
+        <div class="col-sm-4 col-md-4">
+            <div class="canvas-section-desc">
+                <ul>
+                    <li>
+                        <h4>Select T-shirt Color: <input type="color" value="#ffff00" ng-model="tColor" ng-change="changeTColor()"> {{tColor}}</h4>
+                    </li>
+                    <li>
+                        <h4>Select Shapes: </h4>
+                        <ul>
+                            <li>
+                                <button class="btn shapeBtn" ng-click="addRect()">Rectangle</button>
+                                <input type="color" value="#ff0080" id="rectColor">
+                            </li>
+                            <li>
+                                <button class="btn shapeBtn" ng-click="addCircle()">Circle</button>
+                                <input type="color" id="circleColor" value="#f0f0f0">
+                            </li>
+                            <li>
+                                <button class="btn shapeBtn" ng-click="addTriangle()">Triangle</button>
+                                <input type="color" id="triangleColor" value="#f0fcfc">
+                            </li>
+                            <li>
+                                <button class="btn shapeBtn" ng-click="addEllipse()">Ellipse</button>
+                                <input type="color" id="ellipseColor" value="#bbffbb">
+                            </li>
+                            <li>
+                                <button class="btn btn-primary shapeBtn" ng-click="deleteObject()">Remove Selected Object</button>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h4>Upload Image:</h4>
+                        <input type="file" id="imgLoader">
+                    </li>
+                    <li>
+                        <h4>Add Text:</h4>
+                        <input type="text" id="customText" class="customText form-control" placeholder="Add your text here." />
+                        <button class="btn shapeBtn" ng-click="addText()">Add</button>
+                    </li>
+                </ul>
+                <input class="customText form-control" type="text" ng-model="designName" placeholder="Enter Design Name">
+                <button class="btn btn-success shapeBtn" ng-click="insertData()">Save Design</button>
+            </div>
+        </div>
+<!--Upload Design Section-->
+        <div class="col-sm-2 col-md-2">
+            <div class="canvas-section-desc">
+                <h4>Saved Designs</h4>
+                <select class="designDrop dropdown form-control" ng-model="selectedName" ng-options="item.title for item in designArray"></select>
+                <button class="btn btn-success shapeBtn" ng-click="getDesign()">Upload Design</button>
+                <button class="btn btn-danger shapeBtn" ng-click="clearDesign()">Reset</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--Canvas Container Class--->
