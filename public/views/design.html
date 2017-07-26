@@ -59,6 +59,8 @@
                 <select class="designDrop dropdown form-control" ng-model="selectedName" ng-options="item.title for item in designArray"></select>
                 <button class="btn btn-success shapeBtn" ng-click="getDesign()">Upload Design</button>
                 <button class="btn btn-danger shapeBtn" ng-click="clearDesign()">Reset</button>
+                <button class="btn btn-primary shapeBtn" ng-click="undo()">Undo</button><br>
+                <button class="btn btn-primary shapeBtn" ng-click="redo()">Redo</button><br>
 
             </div>
         </div>
