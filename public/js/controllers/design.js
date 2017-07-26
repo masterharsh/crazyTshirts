@@ -21,14 +21,25 @@ freshApp.controller('DesignController',
 // initialize fabric canvas and assign to global windows object for debug
       
         let canvas =  window._canvas = new fabric.Canvas('freshCanvas');
+      
+        let state = [];
+        let mods = 0;
 
+        canvas.on(
+            'object:modified', function () {
+            updateModifications(true);
+        },
+            'object:added', function () {
+            updateModifications(true);
+        });
+      
        
 //Function to change Color of the T-shirt Image      
       $scope.changeTColor = function(){
            $("#design").css("background-color", $scope.tColor);
       }
       
-//Method to clear current seelected object
+//Method to clear current selected object
       $scope.deleteObject = function(){
            canvas.getActiveObject().remove();
       }
@@ -45,6 +56,7 @@ freshApp.controller('DesignController',
                   fill: rectColor
                 });
                 canvas.add(rect);
+           updateModifications(true);
       }
      
 //Function to add Circle Shape    
@@ -58,6 +70,7 @@ freshApp.controller('DesignController',
                   fill: circleColor
                 });
                 canvas.add(circle);
+           updateModifications(true);
          }
 //Function to add Triangle Shape    
       
@@ -71,6 +84,7 @@ freshApp.controller('DesignController',
                   fill: triangleColor
                 });
                 canvas.add(triangle); 
+           updateModifications(true);
         }
       
 //Function to add Ellipse Shape    
@@ -87,6 +101,7 @@ freshApp.controller('DesignController',
                   top: 100
                 });
                 canvas.add(ellipse); 
+           updateModifications(true);
         }
       
 //Function to add Image on Canvas
@@ -110,13 +125,14 @@ freshApp.controller('DesignController',
                     });
                     
                     canvas.add(image);
+                  
                  
                     // end fabricJS stuff
                 }
 
             }
             reader.readAsDataURL(e.target.files[0]);
-           
+             updateModifications(true);
         }
   
 //Function to add Text on Canvas  
@@ -130,8 +146,37 @@ freshApp.controller('DesignController',
                   
                 });
             canvas.add(customText);
+            updateModifications(true);
         }      
      
+/// Canvas History Method
+        
+        function updateModifications(savehistory) {
+            if (savehistory === true) {
+                let currentHistory = JSON.stringify(canvas.toJSON());
+                state.push(currentHistory);
+            }
+        }
+//Undo Method
+        $scope.undo = function (){
+            if (mods < state.length) {
+                canvas.clear().renderAll();
+                canvas.loadFromJSON(state[state.length - 1 - mods - 1]);
+                canvas.renderAll();
+                mods += 1;
+              }
+        }
+//Redo Method
+        $scope.redo = function() {
+            if (mods > 0) {
+                canvas.clear().renderAll();
+                canvas.loadFromJSON(state[state.length - 1 - mods + 1]);
+                canvas.renderAll();
+                mods -= 1;                
+            }
+        }
+
+
 //Reset the Canvas        
       $scope.clearDesign = function(){
            canvas.clear();
